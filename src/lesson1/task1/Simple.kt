@@ -77,7 +77,8 @@ fun angleInRadian(grad: Int, min: Int, sec: Int): Double = (grad + min / 60.0 + 
  * Найти длину отрезка, соединяющего точки на плоскости с координатами (x1, y1) и (x2, y2).
  * Например, расстояние между (3, 0) и (0, 4) равно 5
  */
-fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = sqrt(sqr(x2 - x1) + sqr(y2 - y1))
+fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double =
+        sqrt(sqr(x2 - x1) + sqr(y2 - y1))
 
 /**
  * Простая
@@ -94,8 +95,8 @@ fun thirdDigit(number: Int): Int = ( number % 1000 ) / 100
  * прибыл на станцию назначения в h2 часов m2 минут того же дня (например в 13:01).
  * Определите время поезда в пути в минутах (в данном случае 216).
  */
-fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int = (hoursArrive * 60 -
-        hoursDepart * 60) + (minutesArrive - minutesDepart)
+fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int =
+        (hoursArrive * 60 - hoursDepart * 60) + (minutesArrive - minutesDepart)
 
 /**
  * Простая
@@ -104,8 +105,8 @@ fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minute
  * Сколько денег будет на счету через 3 года (с учётом сложных процентов)?
  * Например, 100 рублей под 10% годовых превратятся в 133.1 рубля
  */
-fun accountInThreeYears(initial: Int, percent: Int): Double = initial * (percent / 100.0 + 1.0) *
-        (percent / 100.0 + 1.0) * (percent / 100.0 + 1.0)
+fun accountInThreeYears(initial: Int, percent: Int): Double =
+        initial * (percent / 100.0 + 1.0) * (percent / 100.0 + 1.0) * (percent / 100.0 + 1.0)
 
 
 /**
