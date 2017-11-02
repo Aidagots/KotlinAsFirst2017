@@ -289,6 +289,7 @@ fun squareSequenceDigit(n: Int): Int {
         count = 1
         i+=1
     }
+    return 0
 }
 
 /**
