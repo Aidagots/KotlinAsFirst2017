@@ -232,7 +232,7 @@ fun cos(x: Double, eps: Double): Double {
         }
     }
     if (h == 0.0) return 1.0
-    while (b >= eps) {
+    while (abs(b)>=abs(eps)){
         b = pow(h, g.toDouble()) / factorial(g)
         if (g % 4 == 0) k = k + b
         if (g % 4 == 2) k = k - b
@@ -275,22 +275,25 @@ fun hasDifferentDigits(n: Int): Boolean = TODO()
  * Например, 2-я цифра равна 4, 7-я 5, 12-я 6.
  */
 fun squareSequenceDigit(n: Int): Int {
-    var h=n
-    var d=0
-    var count=1
-    var i=1
-    while(h>0) {
-        d = i * i
-        while (d > 9) {
-            d = d / 10
+    var k: Int
+    var count = 0
+    var i = 0
+    while (n > count) {
+        i += 1
+        k = i * i
+        while (k > 0) {
+            k /= 10
             count += 1
         }
-        h -= count
-        count = 1
-        i+=1
     }
-    return 0
+    k = i * i
+    if (count > n) {
+        k /= pow(10.0, (count - n).toDouble()).toInt()
+    }
+    return k % 10
 }
+
+
 
 /**
  * Сложная
