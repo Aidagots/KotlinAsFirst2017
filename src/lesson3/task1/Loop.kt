@@ -200,7 +200,7 @@ fun sin(x: Double, eps: Double): Double {
         }
     }
     if (h == 0.0) return 0.0
-    while (b > eps) {
+    while (b >= eps) {
         b = pow(h, g.toDouble()) / factorial(g)
         if (g % 4 == 3) k = k - b
         if (g % 4 == 1) k = k + b
@@ -232,7 +232,7 @@ fun cos(x: Double, eps: Double): Double {
         }
     }
     if (h == 0.0) return 1.0
-    while (b > eps) {
+    while (b >= eps) {
         b = pow(h, g.toDouble()) / factorial(g)
         if (g % 4 == 0) k = k + b
         if (g % 4 == 2) k = k - b
