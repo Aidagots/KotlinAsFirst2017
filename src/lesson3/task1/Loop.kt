@@ -303,4 +303,28 @@ fun squareSequenceDigit(n: Int): Int {
  * 1123581321345589144...
  * Например, 2-я цифра равна 1, 9-я 2, 14-я 5.
  */
-fun fibSequenceDigit(n: Int): Int = TODO()
+fun fibSequenceDigit(n: Int): Int {
+    var m = 1
+    var count = 1
+    var h = 0
+    var h1 = 1
+    while (n > count) {
+        m = h + h1
+        while (m > 0) {
+            m /= 10
+            count += 1
+        }
+        m = h + h1
+        val h2 = h
+        h = h1
+        h1 = h2 + h
+    }
+    val c = count - n
+    if (count > n) {
+        for (j in 1..c) {
+            m /= 10
+        }
+    }
+    return m % 10
+}
+
