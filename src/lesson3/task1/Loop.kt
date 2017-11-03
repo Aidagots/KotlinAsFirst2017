@@ -200,7 +200,7 @@ fun sin(x: Double, eps: Double): Double {
         }
     }
     if (h == 0.0) return 0.0
-    while (b >= eps) {
+    while (abs(b)>=abs(eps)) {
         b = pow(h, g.toDouble()) / factorial(g)
         if (g % 4 == 3) k = k - b
         if (g % 4 == 1) k = k + b
