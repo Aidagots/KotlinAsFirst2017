@@ -69,7 +69,6 @@ fun digitNumber(n: Int): Int {
     while (abs(n1) > 9) {
         n1 = n1 / 10
         count = count + 1
-
     }
     return count
 }
@@ -85,8 +84,7 @@ fun fib(n: Int): Int {
     var fib2 = 1
     var fib3 = fib1 + fib2
     if (n == 1 || n == 2) return 1
-    else
-        for (H in 3..n) {
+        for (h in 3..n) {
             fib3 = fib1 + fib2
             fib1 = fib2
             fib2 = fib3
@@ -116,13 +114,10 @@ fun lcm(m: Int, n: Int): Int {
  *
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
-fun minDivisor(n: Int): Int {
-    var count = n
-    for (b in 2..n/2) {
-        if (n % b == 0) {
-            count = b
-            break
-        }
+fun minDivisor(n: Int): Int  {
+    var count = 2
+    while (n % count != 0) {
+        count=count+1
     }
     return count
 }
@@ -190,16 +185,12 @@ fun sin(x: Double, eps: Double): Double {
     var g = 1
     var h = x
     var k = 0.0
-    if (h > 2 * PI) {
         while (h > 2 * PI) {
             h = h - 2 * PI
         }
-    }
-    if (h < -2 * PI) {
         while (h < -2 * PI) {
             h += 2 * PI
         }
-    }
     if (h == 0.0) return 0.0
     while (abs(b)>=abs(eps)) {
         b = pow(h, g.toDouble()) / factorial(g)
