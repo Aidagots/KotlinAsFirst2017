@@ -160,8 +160,8 @@ fun times(a: List<Double>, b: List<Double>): Double{
 fun polynom(p: List<Double>, x: Double): Double {
     var m = 0.0
     var x1 = 1.0
-    for (H in 0 until p.size) {
-        m = m + p[H] * x1
+    for (h in 0 until p.size) {
+        m = m + p[h] * x1
         x1 =x1 * x
     }
     return m
@@ -177,7 +177,14 @@ fun polynom(p: List<Double>, x: Double): Double {
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun accumulate(list: MutableList<Double>): MutableList<Double> = TODO()
+fun accumulate(list: MutableList<Double>): MutableList<Double> {
+    if (list.size == 0) return list
+    for (m in 1 until list.size) {
+        list[m] += list[m - 1]
+    }
+    return list
+}
+
 
 /**
  * Средняя
