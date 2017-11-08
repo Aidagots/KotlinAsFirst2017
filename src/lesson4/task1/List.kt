@@ -128,8 +128,8 @@ fun mean(list: List<Double>): Double {
  */
 fun center(list: MutableList<Double>): MutableList<Double> {
     val n = list.sum() / list.size
-    for (H in 0 until list.size) {
-        list[H] -= n
+    for (h in 0 until list.size) {
+        list[h] -= n
     }
     return list
 }
