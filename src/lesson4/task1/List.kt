@@ -143,8 +143,8 @@ fun center(list: MutableList<Double>): MutableList<Double> {
  */
 fun times(a: List<Double>, b: List<Double>): Double{
     var count=0.0
-    for (i in 0 until a.size){
-        count+=a[i]*b[i]
+    for (h in 0 until a.size){
+        count+=a[h]*b[h]
     }
     return count
 }
