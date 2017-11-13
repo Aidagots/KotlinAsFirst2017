@@ -273,10 +273,7 @@ fun squareSequenceDigit(n: Int): Int {
     while (n > count) {
         i += 1
         k = i * i
-        while (k > 0) {
-            k /= 10
-            count += 1
-        }
+        count+= digitNumber (k)
     }
     k = i * i
     if (count > n) {
@@ -301,10 +298,7 @@ fun fibSequenceDigit(n: Int): Int {
     var h1 = 1
     while (n > count) {
         m = h + h1
-        while (m > 0) {
-            m /= 10
-            count += 1
-        }
+        count+=digitNumber(m)
         m = h + h1
         val h2 = h
         h = h1
