@@ -84,11 +84,11 @@ fun fib(n: Int): Int {
     var fib2 = 1
     var fib3 = fib1 + fib2
     if (n == 1 || n == 2) return 1
-        for (h in 3..n) {
-            fib3 = fib1 + fib2
-            fib1 = fib2
-            fib2 = fib3
-        }
+    for (h in 3..n) {
+        fib3 = fib1 + fib2
+        fib1 = fib2
+        fib2 = fib3
+    }
     return fib2
 
 }
@@ -115,11 +115,11 @@ fun lcm(m: Int, n: Int): Int {
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
 fun minDivisor(n: Int): Int  {
-    var count = 2
-    while (n % count != 0) {
-        count=count+1
+    var count = n
+    for (m in 2..Math.sqrt(n.toDouble()).toInt())  {
+        if (n%m == 0) return m
     }
-    return count
+    return n
 }
 
 
@@ -130,7 +130,7 @@ fun minDivisor(n: Int): Int  {
  */
 fun maxDivisor(n: Int): Int {
     var k = n / 2
-    while (n % k != 0) {
+    for (m in 2..Math.sqrt(n.toDouble()).toInt()) {
         k -= 1
     }
     return k
@@ -185,14 +185,14 @@ fun sin(x: Double, eps: Double): Double {
     var g = 1
     var h = x
     var k = 0.0
-        while (h > 2 * PI) {
-            h = h - 2 * PI
-        }
-        while (h < -2 * PI) {
-            h += 2 * PI
-        }
+    while (h > 2 * PI) {
+        h = h - 2 * PI
+    }
+    while (h < -2 * PI) {
+        h += 2 * PI
+    }
     if (h == 0.0) return 0.0
-    while (abs(b)>=abs(eps)) {
+    while (abs(b) >= abs(eps)) {
         b = pow(h, g.toDouble()) / factorial(g)
         if (g % 4 == 3) k = k - b
         if (g % 4 == 1) k = k + b
@@ -213,16 +213,12 @@ fun cos(x: Double, eps: Double): Double {
     var g = 2
     var h = x
     var k = 1.0
-    if (h > 2 * PI) {
         while (h > 2 * PI) {
             h = h - 2 * PI
         }
-    }
-    if (h < -2 * PI) {
         while (h < -2 * PI) {
             h += 2 * PI
         }
-    }
     if (h == 0.0) return 1.0
     while (abs(b)>=abs(eps)){
         b = pow(h, g.toDouble()) / factorial(g)
