@@ -112,7 +112,8 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
     val maks = maxOf(a, b, c)
     val mink = minOf(a, b, c)
     val mid = a + b + c - mink - maks
-    return when { (maks > mink + mid) -> -1
+    return when {
+        (maks > mink + mid) -> -1
         (sqr(maks) == sqr(mink) + sqr(mid)) -> 1
         (sqr(maks) > (sqr(mink) + sqr(mid))) -> 2
         else -> 0
