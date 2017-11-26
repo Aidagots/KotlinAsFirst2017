@@ -128,12 +128,11 @@ fun minDivisor(n: Int): Int  {
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
 fun maxDivisor(n: Int): Int {
-    var k = n / 2
-    for (m in 2..Math.sqrt(n.toDouble()).toInt()) {
-        k -= 1
+    for (k in n / 2 downTo Math.sqrt(n.toDouble()).toInt()) {
+        if (n % k == 0) return k
     }
-    return k
-}
+    return 1
+    }
 
 
 
