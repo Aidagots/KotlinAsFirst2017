@@ -148,10 +148,10 @@ fun center(list: MutableList<Double>): MutableList<Double> {
  * представленные в виде списков a и b. Скалярное произведение считать по формуле:
  * C = a1b1 + a2b2 + ... + aNbN. Произведение пустых векторов считать равным 0.0.
  */
-fun times(a: List<Double>, b: List<Double>): Double{
-    var count=0.0
-    for (h in 0 until a.size){
-        count+=a[h]*b[h]
+fun times(a: List<Double>, b: List<Double>): Double {
+    var count = 0.0
+    for (h in 0 until a.size) {
+        count += a[h] * b[h]
     }
     return count
 }
@@ -169,7 +169,7 @@ fun polynom(p: List<Double>, x: Double): Double {
     var x1 = 1.0
     for (h in 0 until p.size) {
         m = m + p[h] * x1
-        x1 =x1 * x
+        x1 = x1 * x
     }
     return m
 }
@@ -210,7 +210,7 @@ fun factorize(n: Int): MutableList<Int> {
             g.add(m)
         }
     }
-        return g
+    return g
 }
 
 fun factorizeToString(n: Int): String = TODO()
@@ -223,7 +223,7 @@ fun factorizeToString(n: Int): String = TODO()
  * например: n = 100, base = 4 -> (1, 2, 1, 0) или n = 250, base = 14 -> (1, 3, 12)
  */
 fun convert(n: Int, base: Int): List<Int> {
-    var numb= n
+    var numb = n
     val result = mutableListOf<Int>()
     while (numb >= 0) {
         result.add(numb % base)
@@ -254,8 +254,8 @@ fun convertToString(n: Int, base: Int): String =TODO()
  */
 fun decimal(digits: List<Int>, base: Int): Int {
     var result = 0
-    for((j, i) in (digits.size-1 downTo 0).withIndex()) {
-        result += digits[i]*Math.pow(base.toDouble(), j.toDouble()).toInt()
+    for ((j, i) in (digits.size - 1 downTo 0).withIndex()) {
+        result += digits[i] * Math.pow(base.toDouble(), j.toDouble()).toInt()
     }
     return result
 }
@@ -300,7 +300,7 @@ fun roman(n: Int): String = TODO()
  * Например, 375 = "триста семьдесят пять",
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
-fun russian(n: Int): String  {
+fun russian(n: Int): String {
     val houndreds = listOf("сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот")
     val dozens2 = listOf("одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать", "семьнадцать",
             "восемьнадцать", "девятнадцать")
@@ -326,16 +326,16 @@ fun russian(n: Int): String  {
     if (number[7] in 11..19) result.add(dozens2[number[7] - 11])
     else {
         if (number[1] != 0) result.add(dozens[number[1] - 1])
-        if (number[2] != 0) result.add(unitsH[number[2]-1])
+        if (number[2] != 0) result.add(unitsH[number[2] - 1])
     }
-    if ((number[2] == 0 || number[2]>4 || number[6] in 11..19) && n >1000) result.add("тысяч")
+    if ((number[2] == 0 || number[2] > 4 || number[6] in 11..19) && n > 1000) result.add("тысяч")
     if (number[2] == 1) result.add("тысяча")
-    if (number[2] == 2||number[2] == 3) result.add("тысячи")
+    if (number[2] == 2 || number[2] == 3) result.add("тысячи")
     if (number[3] != 0) result.add(houndreds[number[3] - 1])
     if (number[6] in 11..19) result.add(dozens2[number[6] - 11])
     else {
         if (number[4] != 0) result.add(dozens[number[4] - 1])
         if (number[5] != 0) result.add(units[number[5] - 1])
     }
-    return result.filter{it != ""}.joinToString(" ")
+    return result.filter { it != "" }.joinToString(" ")
 }
