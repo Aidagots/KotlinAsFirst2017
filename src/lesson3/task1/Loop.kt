@@ -122,7 +122,6 @@ fun minDivisor(n: Int): Int  {
     return n
 }
 
-
 /**
  * Простая
  *
@@ -213,14 +212,14 @@ fun cos(x: Double, eps: Double): Double {
     var g = 2
     var h = x
     var k = 1.0
-        while (h > 2 * PI) {
-            h = h - 2 * PI
-        }
-        while (h < -2 * PI) {
-            h += 2 * PI
-        }
+    while (h > 2 * PI) {
+        h = h - 2 * PI
+    }
+    while (h < -2 * PI) {
+        h += 2 * PI
+    }
     if (h == 0.0) return 1.0
-    while (abs(b)>=abs(eps)){
+    while (abs(b) >= abs(eps)) {
         b = pow(h, g.toDouble()) / factorial(g)
         if (g % 4 == 0) k = k + b
         if (g % 4 == 2) k = k - b
