@@ -185,7 +185,6 @@ fun polynom(p: List<Double>, x: Double): Double {
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
 fun accumulate(list: MutableList<Double>): MutableList<Double> {
-    if (list.isEmpty()) return list
     for (m in 1 until list.size) {
         list[m] += list[m - 1]
     }
@@ -225,11 +224,11 @@ fun factorizeToString(n: Int): String = TODO()
 fun convert(n: Int, base: Int): List<Int> {
     var numb = n
     val result = mutableListOf<Int>()
-    while (numb >= 0) {
+    while (numb > 0) {
         result.add(numb % base)
         numb /= base
     }
-    return result.sorted()
+    return result.reversed()
 }
 
 
@@ -301,11 +300,12 @@ fun roman(n: Int): String = TODO()
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
 fun russian(n: Int): String {
-    val houndreds = listOf("сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот")
-    val dozens2 = listOf("одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать", "семьнадцать",
-            "восемьнадцать", "девятнадцать")
-    val dozens = listOf("десять", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят",
-            "девяносто")
+    val houndreds = listOf("сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот",
+            "восемьсот", "девятьсот")
+    val dozens2 = listOf("одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать",
+            "семьнадцать", "восемьнадцать", "девятнадцать")
+    val dozens = listOf("десять", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят",
+            "восемьдесят", "девяносто")
     val units = listOf("один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять")
     val unitsH = listOf("одна", "две", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять")
     val number1 = mutableListOf<Int>()
