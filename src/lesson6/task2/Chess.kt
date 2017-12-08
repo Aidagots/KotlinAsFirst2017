@@ -21,7 +21,15 @@ data class Square(val column: Int, val row: Int) {
      * В нотации, колонки обозначаются латинскими буквами от a до h, а ряды -- цифрами от 1 до 8.
      * Для клетки не в пределах доски вернуть пустую строку
      */
-    fun notation(): String = TODO()
+    fun notation(): String {
+        var result = ""
+        val list = listOf<String>("a", "b", "c", "d", "e", "f", "g", "h")
+        if (column in 1..8 && row in 1..8) {
+            result += list[column - 1]
+            result += row.toString()
+        }
+        return result
+    }
 }
 
 /**
@@ -72,7 +80,14 @@ fun rookMoveNumber(start: Square, end: Square): Int = TODO()
  *          rookTrajectory(Square(3, 5), Square(8, 5)) = listOf(Square(3, 5), Square(8, 5))
  * Если возможно несколько вариантов самой быстрой траектории, вернуть любой из них.
  */
-fun rookTrajectory(start: Square, end: Square): List<Square> = TODO()
+fun rookTrajectory(start: Square, end: Square): List<Square> {
+    val result = mutableListOf<Square>(start)
+    if (start.column != end.column && start.row != end.row) {
+        result.add(Square(end.column, start.row))
+    }
+    if (start != end) result.add(end)
+    return result
+}
 
 /**
  * Простая

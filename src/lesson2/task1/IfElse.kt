@@ -123,21 +123,21 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
 }
 
 
-    /**
-     * Средняя
-     *
-     * Даны четыре точки на одной прямой: A, B, C и D.
-     * Координаты точек a, b, c, d соответственно, b >= a, d >= c.
-     * Найти длину пересечения отрезков AB и CD.
-     * Если пересечения нет, вернуть -1.
-     */
-    
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int = when{
-        (a <= c) && (b <= d) -> if (b - c < 0) -1 else b - c
-        (a >= c) && (b >= d) -> if (d - a < 0) -1 else d - a
-        (a <= c) && (b >= d) -> if (d - c < 0) -1 else d - c
-        (a >= c) && (b <= d) -> if (b - a < 0) -1 else b - a
-        else -> -1
-    }
+/**
+ * Средняя
+ *
+ * Даны четыре точки на одной прямой: A, B, C и D.
+ * Координаты точек a, b, c, d соответственно, b >= a, d >= c.
+ * Найти длину пересечения отрезков AB и CD.
+ * Если пересечения нет, вернуть -1.
+ */
+
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int = when {
+    (a <= c) && (b <= d) -> if (b - c < 0) -1 else b - c
+    (a >= c) && (b >= d) -> if (d - a < 0) -1 else d - a
+    (a <= c) && (b >= d) -> if (d - c < 0) -1 else d - c
+    (a >= c) && (b <= d) -> if (b - a < 0) -1 else b - a
+    else -> -1
+}
 
 

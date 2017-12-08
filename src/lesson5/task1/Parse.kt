@@ -69,28 +69,27 @@ fun main(args: Array<String>) {
 fun dateStrToDigit(str: String): String {
     val parts = str.split(" ")
     val result = mutableListOf<String>()
-    if (str matches Regex("""^\d{1,2} [а-я]{3,} \d+$""")) {
-        if (parts[0].toInt() < 10) {
-            (result.add("0" + parts[0].toInt().toString()))
-        } else (result.add(parts[0]))
-        when {
-            (parts[1] == "января") -> result.add("01")
-            (parts[1] == "февраля") -> result.add("02")
-            (parts[1] == "марта") -> result.add("03")
-            (parts[1] == "апреля") -> result.add("04")
-            (parts[1] == "мая") -> result.add("05")
-            (parts[1] == "июня") -> result.add("06")
-            (parts[1] == "июля") -> result.add("07")
-            (parts[1] == "августа") -> result.add("08")
-            (parts[1] == "сентября") -> result.add("09")
-            (parts[1] == "октября") -> result.add("10")
-            (parts[1] == "ноября") -> result.add("11")
-            (parts[1] == "декабря") -> result.add("12")
-        }
-        if (result.size != 2) return ""
-        result.add(parts[2])
-        return result.joinToString(".")
-    } else return ""
+    if (!(str matches Regex("""^\d{1,2} [а-я]{3,} \d+$"""))) return ""
+    if (parts[0].toInt() < 10) {
+        (result.add("0" + parts[0].toInt().toString()))
+    } else (result.add(parts[0]))
+    when {
+        (parts[1] == "января") -> result.add("01")
+        (parts[1] == "февраля") -> result.add("02")
+        (parts[1] == "марта") -> result.add("03")
+        (parts[1] == "апреля") -> result.add("04")
+        (parts[1] == "мая") -> result.add("05")
+        (parts[1] == "июня") -> result.add("06")
+        (parts[1] == "июля") -> result.add("07")
+        (parts[1] == "августа") -> result.add("08")
+        (parts[1] == "сентября") -> result.add("09")
+        (parts[1] == "октября") -> result.add("10")
+        (parts[1] == "ноября") -> result.add("11")
+        (parts[1] == "декабря") -> result.add("12")
+    }
+    if (result.size != 2) return ""
+    result.add(parts[2])
+    return result.joinToString(".")
 }
 
 
@@ -145,7 +144,18 @@ fun bestLongJump(jumps: String): Int = TODO()
  * Прочитать строку и вернуть максимальную взятую высоту (230 в примере).
  * При нарушении формата входной строки вернуть -1.
  */
-fun bestHighJump(jumps: String): Int = TODO()
+fun bestHighJump(jumps: String): Int {
+    val results = jumps.split(" ", "-", "%")
+    var maxResults = 0
+    if (!(jumps matches Regex("""\d+ ([+%-]+( )?)*"""))) return -1
+    for (h in results.size - 1 downTo 0) {
+        if (results[h] == "+") {
+            maxResults = results[h - 1].toInt()
+        }
+    }
+    return maxResults
+}
+
 
 /**
  * Сложная
@@ -156,7 +166,20 @@ fun bestHighJump(jumps: String): Int = TODO()
  * Вернуть значение выражения (6 для примера).
  * Про нарушении формата входной строки бросить исключение IllegalArgumentException
  */
-fun plusMinus(expression: String): Int = TODO()
+fun plusMinus(expression: String): Int {
+    val valueExpression = expression.split(" ")
+    var result = valueExpression[0].toInt()
+    require(expression matches Regex("""\d+ ([+-] /d+)*"""))
+    for (h in 1 until valueExpression.size step 2) {
+        if (valueExpression[h] == "+") {
+            result += valueExpression[h + 1].toInt()
+        }
+        if (valueExpression[h] == "-") {
+            result -= valueExpression[h + 1].toInt()
+        }
+    }
+    return result
+}
 
 /**
  * Сложная

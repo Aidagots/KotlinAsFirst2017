@@ -270,18 +270,13 @@ fun decimal(digits: List<Int>, base: Int): Int {
  * Например: str = "13c", base = 14 -> 250
  */
 fun decimalFromString(str: String, base: Int): Int {
-    var list: List<Int>
-    val s = str
-    list = listOf()
-    for (h in 0..s.length - 1)
-        if (s[h] in '0'..'9') list += s[h].toInt() - 48
-        else list += s[h].toInt() - 87
+    var list: List<Int> = listOf()
+    val number = str
+    for (h in 0 until number.length)
+        if (number[h] in '0'..'9') list += number[h].toString().toInt()
+        else list += number[h] - 'a' + 10
     return decimal(list, base)
 }
-
-
-
-
 
 /**
  * Сложная
@@ -303,13 +298,14 @@ fun roman(n: Int): String = TODO()
 fun russian(n: Int): String {
     val houndreds = listOf("сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот",
             "восемьсот", "девятьсот")
-    val dozens2 = listOf("одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать",
-            "семьнадцать", "восемьнадцать", "девятнадцать")
-    val dozens = listOf("десять", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят",
-            "восемьдесят", "девяносто")
+    val dozens2 = listOf("одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать",
+            "шестнадцать", "семьнадцать", "восемьнадцать", "девятнадцать")
+    val dozens = listOf("десять", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят",
+            "семьдесят", "восемьдесят", "девяносто")
     val units = listOf("один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять")
     val unitsH = listOf("одна", "две", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять")
     val number1 = mutableListOf<Int>()
+    val numberT = mutableListOf<Int>()
     val result = mutableListOf<String>()
     var h = n
     while (h > 0) {
@@ -321,19 +317,19 @@ fun russian(n: Int): String {
     while (number.size != 6) {
         number.add(0, 0)
     }
-    number.add(n % 100)
-    number.add(n / 1000 % 100)
+    numberT.add(n % 100)
+    numberT.add(n / 1000 % 100)
     if (number[0] != 0) result.add(houndreds[number[0] - 1])
-    if (number[7] in 11..19) result.add(dozens2[number[7] - 11])
+    if (numberT[1] in 11..19) result.add(dozens2[numberT[1] - 11])
     else {
         if (number[1] != 0) result.add(dozens[number[1] - 1])
         if (number[2] != 0) result.add(unitsH[number[2] - 1])
     }
-    if ((number[2] == 0 || number[2] > 4 || number[7] in 11..19) && n > 1000) result.add("тысяч")
-    if (number[2] == 1) result.add("тысяча")
-    if (number[2] == 2 || number[2] == 3 || number[2] == 4) result.add("тысячи")
+    if ((number[2] == 0 || number[2] > 4 || numberT[1] in 11..19) && n > 1000) result.add("тысяч")
+    if (number[2] == 1 && numberT[1] !in 11..19) result.add("тысяча")
+    if ((number[2] == 2 || number[2] == 3 || number[2] == 4) && numberT[1] !in 11..19) result.add("тысячи")
     if (number[3] != 0) result.add(houndreds[number[3] - 1])
-    if (number[6] in 11..19) result.add(dozens2[number[6] - 11])
+    if (numberT[0] in 11..19) result.add(dozens2[numberT[0] - 11])
     else {
         if (number[4] != 0) result.add(dozens[number[4] - 1])
         if (number[5] != 0) result.add(units[number[5] - 1])
