@@ -106,7 +106,7 @@ data class Segment(val begin: Point, val end: Point) {
  */
 
 fun diameter(vararg points: Point): Segment {
-    require(points.size < 2)
+    require(points.size >= 2)
     var begin = points[0]
     var end = points[1]
     var max = 0.0
