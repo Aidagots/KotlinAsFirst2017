@@ -145,12 +145,13 @@ fun bestLongJump(jumps: String): Int = TODO()
  * При нарушении формата входной строки вернуть -1.
  */
 fun bestHighJump(jumps: String): Int {
-    val results = jumps.split(" ", "-", "%")
+    val results = jumps.split(" ", "-", "%").filter { it != "" }
     var maxResults = 0
-    if (!(jumps matches Regex("""\d+ ([+%-]+( )?)*"""))) return -1
+    if (!(jumps matches Regex("""(\d+ [%+-]+( )?)*"""))) return -1
     for (h in results.size - 1 downTo 0) {
         if (results[h] == "+") {
             maxResults = results[h - 1].toInt()
+            break
         }
     }
     return maxResults
@@ -167,9 +168,9 @@ fun bestHighJump(jumps: String): Int {
  * Про нарушении формата входной строки бросить исключение IllegalArgumentException
  */
 fun plusMinus(expression: String): Int {
+    require(expression matches Regex("""\d+( [+-] /d+)*"""))
     val valueExpression = expression.split(" ")
     var result = valueExpression[0].toInt()
-    require(expression matches Regex("""\d+ ([+-] /d+)*"""))
     for (h in 1 until valueExpression.size step 2) {
         if (valueExpression[h] == "+") {
             result += valueExpression[h + 1].toInt()
