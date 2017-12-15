@@ -145,15 +145,15 @@ fun bestLongJump(jumps: String): Int = TODO()
  * При нарушении формата входной строки вернуть -1.
  */
 fun bestHighJump(jumps: String): Int { 
-val results = jumps.split(" ") 
-var maxResults = 0 
-for (h in 0 until results.size) { 
-if (!(results[h] matches Regex("""\d+"""))&&!(results[h] matches Regex("""[%+-]+""")) || "+" !in jumps) return -1 
-if ("+" in results[h] && results[h - 1].toInt() > maxResults) { 
-maxResults = results[h - 1].toInt() 
-} 
-} 
-return maxResults 
+    val results = jumps.split(" ") 
+    var maxResults = 0 
+    for (h in 0 until results.size) { 
+        if (!(results[h] matches Regex("""\d+"""))&&!(results[h] matches Regex("""[%+-]+""")) || "+" !in jumps) return -1 
+        if ("+" in results[h] && results[h - 1].toInt() > maxResults) { 
+            maxResults = results[h - 1].toInt() 
+        } 
+    } 
+    return maxResults 
 }
 
 /**
