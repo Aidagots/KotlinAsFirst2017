@@ -254,8 +254,10 @@ fun convertToString(n: Int, base: Int): String =TODO()
  */
 fun decimal(digits: List<Int>, base: Int): Int {
     var result = 0
+    var basepow = 1
     for ((j, i) in (digits.size - 1 downTo 0).withIndex()) {
-        result += digits[i] * Math.pow(base.toDouble(), j.toDouble()).toInt()
+        result += digits[i] * basepow
+        basepow *= base
     }
     return result
 }
@@ -273,7 +275,7 @@ fun decimalFromString(str: String, base: Int): Int {
     var list: List<Int> = listOf()
     val number = str
     for (h in 0 until number.length)
-        if (number[h] in '0'..'9') list += number[h].toString().toInt()
+        if (number[h] in '0'..'9') list += number[h] - '0'
         else list += number[h] - 'a' + 10
     return decimal(list, base)
 }
@@ -296,11 +298,11 @@ fun roman(n: Int): String = TODO()
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
 fun russian(n: Int): String {
-    val houndreds = listOf("сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот",
+    val hundreds = listOf("сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот",
             "восемьсот", "девятьсот")
-    val dozens2 = listOf("одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать",
+    val teens = listOf("одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать",
             "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать")
-    val dozens = listOf("десять", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят",
+    val tens = listOf("десять", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят",
             "семьдесят", "восемьдесят", "девяносто")
     val units = listOf("один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять")
     val unitsH = listOf("одна", "две", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять")
@@ -319,19 +321,19 @@ fun russian(n: Int): String {
     }
     numberT.add(n % 100)
     numberT.add(n / 1000 % 100)
-    if (number[0] != 0) result.add(houndreds[number[0] - 1])
-    if (numberT[1] in 11..19) result.add(dozens2[numberT[1] - 11])
+    if (number[0] != 0) result.add(hundreds[number[0] - 1])
+    if (numberT[1] in 11..19) result.add(teens[numberT[1] - 11])
     else {
-        if (number[1] != 0) result.add(dozens[number[1] - 1])
+        if (number[1] != 0) result.add(tens[number[1] - 1])
         if (number[2] != 0) result.add(unitsH[number[2] - 1])
     }
     if ((number[2] == 0 || number[2] > 4 || numberT[1] in 11..19) && n > 1000) result.add("тысяч")
     if (number[2] == 1 && numberT[1] !in 11..19) result.add("тысяча")
     if ((number[2] == 2 || number[2] == 3 || number[2] == 4) && numberT[1] !in 11..19) result.add("тысячи")
-    if (number[3] != 0) result.add(houndreds[number[3] - 1])
-    if (numberT[0] in 11..19) result.add(dozens2[numberT[0] - 11])
+    if (number[3] != 0) result.add(hundreds[number[3] - 1])
+    if (numberT[0] in 11..19) result.add(teens[numberT[0] - 11])
     else {
-        if (number[4] != 0) result.add(dozens[number[4] - 1])
+        if (number[4] != 0) result.add(tens[number[4] - 1])
         if (number[5] != 0) result.add(units[number[5] - 1])
     }
     return result.filter { it != "" }.joinToString(" ")

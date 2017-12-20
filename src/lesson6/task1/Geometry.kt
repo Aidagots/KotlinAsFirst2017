@@ -112,10 +112,8 @@ fun diameter(vararg points: Point): Segment {
     var max = 0.0
     for (h in 0 until points.size) {
         for (j in 1 until points.size) {
-            val X = points[j].x - points[h].x
-            val Y = points[j].y - points[h].y
-            if (Math.sqrt(sqr(X) + sqr(Y)) > max) {
-                max = Math.sqrt(sqr(X) + sqr(Y))
+            if (points[h].distance(points[j]) > max) {
+                max = points[h].distance(points[j])
                 begin = points[h]
                 end = points[j]
             }

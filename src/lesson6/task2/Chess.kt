@@ -23,15 +23,13 @@ data class Square(val column: Int, val row: Int) {
      */
     fun notation(): String {
         var result = ""
-        val list = listOf<String>("a", "b", "c", "d", "e", "f", "g", "h")
+        val list = "abcdefgh"
         if (column in 1..8 && row in 1..8) {
             result += list[column - 1]
             result += row.toString()
         }
         return result
     }
-}
-
 /**
  * Простая
  *
