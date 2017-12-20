@@ -30,6 +30,7 @@ data class Square(val column: Int, val row: Int) {
         }
         return result
     }
+}
 /**
  * Простая
  *
